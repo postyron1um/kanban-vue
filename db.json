@@ -1,0 +1,66 @@
+{
+  "projects": [
+    {
+      "id": "p1",
+      "key": "AGL",
+      "title": "Agility Core",
+      "description": "Разработка основной системы управления задачами",
+      "createdAt": "2024-01-10T12:00:00Z"
+    }
+  ],
+  "columns": [
+    { "id": "col-1", "projectId": "p1", "title": "Backlog", "order": 1, "color": "#ddd" },
+    { "id": "col-2", "projectId": "p1", "title": "In Progress", "order": 2 },
+    { "id": "col-3", "projectId": "p1", "title": "Review", "order": 3 },
+    { "id": "col-4", "projectId": "p1", "title": "Done", "order": 4 }
+  ],
+  "tasks": [
+    {
+      "id": "t-1",
+      "projectId": "p1",
+      "columnId": "col-1",
+      "key": "AGL-101",
+      "title": "Настроить FSD архитектуру",
+      "description": "Разделить проект на слои: app, pages, widgets, features, entities, shared",
+      "priority": "high",
+      "assigneeId": "u-1",
+      "createdAt": "2024-02-15T09:00:00Z"
+    },
+    {
+      "id": "t-2",
+      "projectId": "p1",
+      "columnId": "col-2",
+      "key": "AGL-102",
+      "title": "Интеграция JSON Server",
+      "description": "Поднять локальный бэкенд и настроить axios инстанс",
+      "priority": "medium",
+      "assigneeId": "u-2",
+      "createdAt": "2024-02-16T10:30:00Z"
+    },
+    {
+      "id": "t-3",
+      "projectId": "p1",
+      "columnId": "col-4",
+      "key": "AGL-103",
+      "title": "Верстка сайдбара",
+      "description": "Использовать shadcn-vue для создания базовой навигации",
+      "priority": "low",
+      "assigneeId": "u-1",
+      "createdAt": "2024-02-14T15:20:00Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "u-1",
+      "name": "Ivan Ivanov",
+      "email": "ivan@agility.com",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Ivan"
+    },
+    {
+      "id": "u-2",
+      "name": "Petr Sidorov",
+      "email": "petr@agility.com",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Petr"
+    }
+  ]
+}
