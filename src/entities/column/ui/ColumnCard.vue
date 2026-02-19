@@ -1,5 +1,5 @@
 <template>
-  <div class="column" :style="{ backgroundColor: column?.color }">
+  <div class="column" :style="{ backgroundColor: column?.color }" @dragover.prevent @drop="onDrop">
     <div class="column__header">
       <div class="column__header-top">
         <div class="column__title-wrapper">
@@ -38,16 +38,26 @@ interface Props {
 }
 
 defineProps<Props>()
+
+const emit = defineEmits<{ dropTask: [value: string] }>()
+
+const onDrop = (e: DragEvent) => {
+  const taskId = e.dataTransfer?.getData('taskId')
+  if (taskId) {
+    emit('dropTask', taskId)
+  }
+}
 </script>
 
 <style scoped lang="scss">
 .column {
   background-color: #f1f2f4;
   border-radius: 12px;
-  width: 300px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   max-height: 100%;
+  min-height: 100vh;
   min-width: 300px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 

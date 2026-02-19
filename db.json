@@ -9,16 +9,36 @@
     }
   ],
   "columns": [
-    { "id": "col-1", "projectId": "p1", "title": "Backlog", "order": 1, "color": "#ddd" },
-    { "id": "col-2", "projectId": "p1", "title": "In Progress", "order": 2 },
-    { "id": "col-3", "projectId": "p1", "title": "Review", "order": 3 },
-    { "id": "col-4", "projectId": "p1", "title": "Done", "order": 4 }
+    {
+      "id": "col-1",
+      "projectId": "p1",
+      "title": "Backlog",
+      "order": 1
+    },
+    {
+      "id": "col-2",
+      "projectId": "p1",
+      "title": "In Progress",
+      "order": 2
+    },
+    {
+      "id": "col-3",
+      "projectId": "p1",
+      "title": "Review",
+      "order": 3
+    },
+    {
+      "id": "col-4",
+      "projectId": "p1",
+      "title": "Done",
+      "order": 4
+    }
   ],
   "tasks": [
     {
       "id": "t-1",
       "projectId": "p1",
-      "columnId": "col-1",
+      "columnId": "col-3",
       "key": "AGL-101",
       "title": "Настроить FSD архитектуру",
       "description": "Разделить проект на слои: app, pages, widgets, features, entities, shared",
@@ -29,7 +49,7 @@
     {
       "id": "t-2",
       "projectId": "p1",
-      "columnId": "col-2",
+      "columnId": "col-1",
       "key": "AGL-102",
       "title": "Интеграция JSON Server",
       "description": "Поднять локальный бэкенд и настроить axios инстанс",
