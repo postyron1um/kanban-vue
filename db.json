@@ -56,13 +56,14 @@
     {
       "id": "t-2",
       "projectId": "p1",
-      "columnId": "col-4",
+      "columnId": "col-2",
       "key": "AGL-102",
       "title": "Интеграция JSON Server",
       "description": "Поднять локальный бэкенд и настроить axios инстанс",
       "priority": "medium",
       "assigneeId": "u-2",
-      "createdAt": "2024-02-16T10:30:00Z"
+      "createdAt": "2024-02-16T10:30:00Z",
+      "order": "t-1771576172507"
     },
     {
       "id": "t-3",
@@ -73,7 +74,96 @@
       "description": "Использовать shadcn-vue для создания базовой навигации",
       "priority": "low",
       "assigneeId": "u-1",
-      "createdAt": "2024-02-14T15:20:00Z"
+      "createdAt": "2024-02-14T15:20:00Z",
+      "order": 2
+    },
+    {
+      "id": "t-1771575859030",
+      "title": "Тестовое",
+      "description": "Нужно написать описание",
+      "priority": "low",
+      "createdAt": 1771575859030,
+      "key": "undefined-t-1",
+      "columnId": "col-1"
+    },
+    {
+      "id": "t-1771575929381",
+      "title": "аыаыаы",
+      "description": "аыыаыаыа",
+      "priority": "low",
+      "createdAt": 1771575929381,
+      "key": "undefined-t-1",
+      "columnId": "col-1"
+    },
+    {
+      "id": "t-1771576013342",
+      "title": "Задача",
+      "description": "ыавывавыа",
+      "priority": "low",
+      "createdAt": 1771576013342,
+      "key": "undefined-t-1",
+      "columnId": "col-1"
+    },
+    {
+      "id": "t-1771576057846",
+      "title": "Задача",
+      "description": "ыавывавыа",
+      "priority": "low",
+      "createdAt": 1771576057846,
+      "key": "undefined-t-1",
+      "columnId": "col-1"
+    },
+    {
+      "id": "t-1771576076510",
+      "title": "fdsfsdfsd",
+      "description": "fdsfsdfsd",
+      "priority": "low",
+      "projectId": "p1",
+      "createdAt": 1771576076510,
+      "key": "AGL-t-1",
+      "columnId": "col-1"
+    },
+    {
+      "id": "t-1771576172507",
+      "title": "Смешные картинки",
+      "description": "Добавить смешные картинки",
+      "priority": "low",
+      "projectId": "p1",
+      "createdAt": 1771576172507,
+      "key": "AGL-t-1",
+      "columnId": "col-2",
+      "order": "t-1771579891220"
+    },
+    {
+      "id": "t-1771579891220",
+      "title": "прлав",
+      "description": "авыоадоыдлаы",
+      "priority": "low",
+      "projectId": "p1",
+      "createdAt": 1771579891220,
+      "key": "AGL-t-1",
+      "columnId": "col-4"
+    },
+    {
+      "id": "t-1771579995452",
+      "title": "авыаываы",
+      "description": "авыаываыв",
+      "priority": "low",
+      "projectId": "p1",
+      "createdAt": 1771579995452,
+      "key": "AGL-t-1",
+      "columnId": "col-4",
+      "order": "t-1771579891220"
+    },
+    {
+      "id": "t-1771580690995",
+      "title": "fdfdf",
+      "description": "fdfdff",
+      "priority": "low",
+      "projectId": "p1",
+      "createdAt": 1771580690995,
+      "key": "AGL-t-1",
+      "columnId": "col-2"
     }
   ],
   "users": [

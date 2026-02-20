@@ -6,12 +6,19 @@ export const useUpdateTask = (projectId: string) => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: ({ taskId, data }: { taskId: string; data: Partial<ITask> }) =>
-      taskApi.updateTask(taskId, data),
+    mutationFn: ({
+      taskId,
+      data,
+      columnId,
+    }: {
+      taskId: string
+      data: Partial<ITask>
+      columnId: string
+    }) => taskApi.updateTask(taskId, data),
 
     onMutate: async ({ taskId, data }, contex) => {
-      await contex.client.cancelQueries({ queryKey: ['todos', projectId] })
-      const previousTasks = contex.client.getQueryData<ITask[]>(['todos', projectId])
+      await contex.client.cancelQueries({ queryKey: ['tasks', projectId] })
+      const previousTasks = contex.client.getQueryData<ITask[]>(['tasks', projectId])
 
       contex.client.setQueryData<ITask[]>(['tasks', projectId], (old) =>
         old?.map((task) => (task.id === taskId ? { ...task, ...data } : task)),

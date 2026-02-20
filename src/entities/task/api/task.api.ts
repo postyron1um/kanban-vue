@@ -1,5 +1,5 @@
 import { api } from '@/shared/api/base'
-import type { ITask, TUpdateTask } from '../model/task.types'
+import type { ITask, TCreateTask, TUpdateTask } from '../model/task.types'
 
 export const taskApi = {
   getTasks: async (projectId: string): Promise<ITask[]> => {
@@ -8,7 +8,7 @@ export const taskApi = {
     return res.data
   },
 
-  createTask: async (task) => {
+  createTask: async (task: TCreateTask): Promise<ITask> => {
     const res = await api.post('/tasks', task)
     return res.data
   },

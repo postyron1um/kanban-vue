@@ -25,7 +25,7 @@
     <div class="task-card__footer">
       <div class="task-card__assignee">
         <div class="task-card__avatar">
-          {{ task.assigneeId.charAt(0).toUpperCase() }}
+          <!-- {{ task?.assigneeId?.charAt(0).toUpperCase() }} -->
         </div>
       </div>
       <time class="task-card__date">{{ formatDate(task.createdAt) }}</time>

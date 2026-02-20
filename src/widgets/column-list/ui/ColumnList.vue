@@ -58,8 +58,6 @@ const { mutate: updateTask } = useUpdateTask(props.projectId)
 const handleTaskMove = (taskId: string, newColumnId: string, newOrder?: number) => {
   updateTask({ taskId, data: { columnId: newColumnId, order: newOrder } })
 }
-
-
 </script>
 
 <style scoped lang="scss">
