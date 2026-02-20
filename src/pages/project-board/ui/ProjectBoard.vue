@@ -1,16 +1,16 @@
 <template>
-
   <div v-if="isLoading">Загрузка проекта...</div>
   <div v-else-if="isError">Ошибка загрузки проекта</div>
   <div v-else class="project">
-    <div class="project__header">
-      <h1>{{ project.data.value?.title }}</h1>
+    <Teleport to="#header-content">
+      <div class="project__header">
+        <h1>{{ project.data.value?.title }}</h1>
 
-      <div class="project__actions">
-        <CreateTaskSheet :project="project.data.value" />
+        <div class="project__actions">
+          <CreateTaskSheet :project="project.data.value" />
+        </div>
       </div>
-    </div>
-
+    </Teleport>
     <ColumnList :project-id />
   </div>
 </template>
@@ -34,7 +34,8 @@ const { isLoading, isError } = project
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
+      flex:1;
+    // padding: 20px 0;
   }
 }
 </style>

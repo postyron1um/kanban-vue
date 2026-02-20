@@ -57,7 +57,7 @@ const onDrop = (e: DragEvent) => {
   display: flex;
   flex-direction: column;
   max-height: 100%;
-  min-height: 100vh;
+
   min-width: 300px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 

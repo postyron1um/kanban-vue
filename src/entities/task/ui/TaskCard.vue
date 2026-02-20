@@ -6,7 +6,7 @@
     draggable="true"
     @dragstart="onDragStart"
     @dragover.prevent
-    @drop="onDrop"
+    @drop.stop="onDrop"
   >
     <div class="task-card__header">
       <span class="task-card__key">{{ task.key }}</span>

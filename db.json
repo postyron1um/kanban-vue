@@ -17,20 +17,20 @@
   ],
   "columns": [
     {
-      "id": "col-2",
-      "projectId": "p1",
-      "title": "In Progress",
-      "order": 2
-    },
-    {
       "id": "col-1",
       "projectId": "p1",
       "title": "Backlog",
       "order": 1
     },
     {
+      "id": "col-2",
+      "projectId": "p1",
+      "title": "In Progress",
+      "order": 2
+    },
+    {
       "id": "col-3",
-      "projectId": "p21",
+      "projectId": "p1",
       "title": "Review",
       "order": 3
     },
@@ -51,119 +51,131 @@
       "description": "Разделить проект на слои: app, pages, widgets, features, entities, shared",
       "priority": "high",
       "assigneeId": "u-1",
-      "createdAt": "2024-02-15T09:00:00Z"
+      "createdAt": "2024-02-15T09:00:00Z",
+      "order": 2750
     },
     {
       "id": "t-2",
       "projectId": "p1",
-      "columnId": "col-2",
+      "columnId": "col-3",
       "key": "AGL-102",
       "title": "Интеграция JSON Server",
       "description": "Поднять локальный бэкенд и настроить axios инстанс",
       "priority": "medium",
       "assigneeId": "u-2",
       "createdAt": "2024-02-16T10:30:00Z",
-      "order": "t-1771576172507"
+      "order": 3000
     },
     {
       "id": "t-3",
       "projectId": "p1",
-      "columnId": "col-1",
+      "columnId": "col-4",
       "key": "AGL-103",
       "title": "Верстка сайдбара",
       "description": "Использовать shadcn-vue для создания базовой навигации",
       "priority": "low",
       "assigneeId": "u-1",
       "createdAt": "2024-02-14T15:20:00Z",
-      "order": 2
+      "order": 4000
     },
     {
       "id": "t-1771575859030",
+      "projectId": "p1",
+      "columnId": "col-2",
+      "key": "AGL-104",
       "title": "Тестовое",
       "description": "Нужно написать описание",
       "priority": "low",
       "createdAt": 1771575859030,
-      "key": "undefined-t-1",
-      "columnId": "col-1"
+      "order": 9796.875
     },
     {
       "id": "t-1771575929381",
+      "projectId": "p1",
+      "columnId": "col-1",
+      "key": "AGL-105",
       "title": "аыаыаы",
       "description": "аыыаыаыа",
       "priority": "low",
       "createdAt": 1771575929381,
-      "key": "undefined-t-1",
-      "columnId": "col-1"
+      "order": 35500
     },
     {
       "id": "t-1771576013342",
+      "projectId": "p1",
+      "columnId": "col-1",
+      "key": "AGL-106",
       "title": "Задача",
       "description": "ыавывавыа",
       "priority": "low",
       "createdAt": 1771576013342,
-      "key": "undefined-t-1",
-      "columnId": "col-1"
+      "order": 34500
     },
     {
       "id": "t-1771576057846",
+      "projectId": "p1",
+      "columnId": "col-1",
+      "key": "AGL-107",
       "title": "Задача",
       "description": "ыавывавыа",
       "priority": "low",
       "createdAt": 1771576057846,
-      "key": "undefined-t-1",
-      "columnId": "col-1"
+      "order": 32000
     },
     {
       "id": "t-1771576076510",
+      "projectId": "p1",
+      "columnId": "col-2",
+      "key": "AGL-108",
       "title": "fdsfsdfsd",
       "description": "fdsfsdfsd",
       "priority": "low",
-      "projectId": "p1",
       "createdAt": 1771576076510,
-      "key": "AGL-t-1",
-      "columnId": "col-1"
+      "order": 7796.875
     },
     {
       "id": "t-1771576172507",
+      "projectId": "p1",
+      "columnId": "col-4",
+      "key": "AGL-109",
       "title": "Смешные картинки",
       "description": "Добавить смешные картинки",
       "priority": "low",
-      "projectId": "p1",
       "createdAt": 1771576172507,
-      "key": "AGL-t-1",
-      "columnId": "col-2",
-      "order": "t-1771579891220"
+      "order": 3000
     },
     {
       "id": "t-1771579891220",
+      "projectId": "p1",
+      "columnId": "col-3",
+      "key": "AGL-110",
       "title": "прлав",
       "description": "авыоадоыдлаы",
       "priority": "low",
-      "projectId": "p1",
       "createdAt": 1771579891220,
-      "key": "AGL-t-1",
-      "columnId": "col-4"
+      "order": 2625
     },
     {
       "id": "t-1771579995452",
+      "projectId": "p1",
+      "columnId": "col-4",
+      "key": "AGL-111",
       "title": "авыаываы",
       "description": "авыаываыв",
       "priority": "low",
-      "projectId": "p1",
       "createdAt": 1771579995452,
-      "key": "AGL-t-1",
-      "columnId": "col-4",
-      "order": "t-1771579891220"
+      "order": 2000
     },
     {
       "id": "t-1771580690995",
+      "projectId": "p1",
+      "columnId": "col-2",
+      "key": "AGL-112",
       "title": "fdfdf",
       "description": "fdfdff",
       "priority": "low",
-      "projectId": "p1",
       "createdAt": 1771580690995,
-      "key": "AGL-t-1",
-      "columnId": "col-2"
+      "order": 8796.875
     }
   ],
   "users": [

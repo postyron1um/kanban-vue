@@ -6,7 +6,7 @@
       :column
       :task-count="10"
       :max-task-count="20"
-      @drop-task="(taskId) => handleTaskMove(taskId, column.id)"
+      @drop-task="(taskId) => handleTaskMove(tasksByColumn[column.id] || [], taskId, column.id)"
     >
       <template #tasks>
         <TaskList
@@ -21,11 +21,11 @@
 <script setup lang="ts">
 import { useColumns } from '@/entities/column/model/useColumns'
 import ColumnCard from '@/entities/column/ui/ColumnCard.vue'
-import { taskApi, type ITask } from '@/entities/task'
+import { type ITask } from '@/entities/task'
 import { useTasks } from '@/entities/task/model/useTasks'
 import TaskList from '@/entities/task/ui/TaskList.vue'
-import { useUpdateTask } from '@/features/move-task/model/useUpdateTask'
-import { computed, onMounted, ref } from 'vue'
+import { useMoveTask } from '@/features/move-task/model/useMoveTask'
+import { computed } from 'vue'
 
 const props = defineProps<{
   projectId: string
@@ -38,7 +38,7 @@ const { data: tasks } = useTasks(props.projectId)
 const tasksByColumn = computed(() => {
   if (!tasks.value) return {}
 
-  return tasks.value.reduce(
+  const grouped = tasks.value.reduce(
     (acc, task) => {
       const { columnId } = task
 
@@ -52,18 +52,46 @@ const tasksByColumn = computed(() => {
     },
     {} as Record<string, ITask[]>,
   )
-})
-const { mutate: updateTask } = useUpdateTask(props.projectId)
 
-const handleTaskMove = (taskId: string, newColumnId: string, newOrder?: number) => {
-  updateTask({ taskId, data: { columnId: newColumnId, order: newOrder } })
-}
+  Object.values(grouped).forEach((columnTasks) => {
+    columnTasks.sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+  })
+
+  return grouped
+})
+
+
+const { handleTaskMove } = useMoveTask(props.projectId);
 </script>
 
 <style scoped lang="scss">
 .column-list {
   display: flex;
   gap: 20px;
-  justify-content: space-between;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  width: 100%;
+  max-width: 100vw;
+  padding: 10px 10px 20px;
+
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+  }
+}
+
+:deep(.column-card) {
+  flex-shrink: 0;
+
+  width: 300px;
+
+  @media (max-width: 480px) {
+    width: 280px;
+  }
 }
 </style>

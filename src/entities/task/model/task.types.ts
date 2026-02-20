@@ -3,11 +3,12 @@ type TaskPriority = 'low' | 'medium' | 'high'
 export interface ITask {
   id: string
   projectId: string
-  columnId: string
+  columnId: string,
+  order: number
   key: string
   title: string
   description?: string
-  priority: TaskPriority
+  priority: TaskPriority,
   // assigneeId: string
   createdAt: string
 }

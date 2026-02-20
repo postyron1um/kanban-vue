@@ -6,33 +6,29 @@ export const useUpdateTask = (projectId: string) => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: ({
-      taskId,
-      data,
-      columnId,
-    }: {
-      taskId: string
-      data: Partial<ITask>
-      columnId: string
-    }) => taskApi.updateTask(taskId, data),
+    mutationFn: ({ taskId, data }: { taskId: string; data: Partial<ITask> }) =>
+      taskApi.updateTask(taskId, data),
 
-    onMutate: async ({ taskId, data }, contex) => {
-      await contex.client.cancelQueries({ queryKey: ['tasks', projectId] })
-      const previousTasks = contex.client.getQueryData<ITask[]>(['tasks', projectId])
+    onMutate: async ({ taskId, data }, context) => {
+      await queryClient.cancelQueries({ queryKey: ['tasks', projectId] })
 
-      contex.client.setQueryData<ITask[]>(['tasks', projectId], (old) =>
-        old?.map((task) => (task.id === taskId ? { ...task, ...data } : task)),
-      )
+      const previousTasks = queryClient.getQueryData<ITask[]>(['tasks', projectId])
+
+      queryClient.setQueryData<ITask[]>(['tasks', projectId], (old) => {
+        if (!old) return []
+
+        return old.map((task) => (task.id === taskId ? { ...task, ...data } : task))
+      })
 
       return { previousTasks }
     },
 
     onError: (err, variables, context) => {
-      console.error('Ошибка мутации, откат:', err)
       if (context?.previousTasks) {
         queryClient.setQueryData(['tasks', projectId], context.previousTasks)
       }
     },
+
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['tasks', projectId] })
     },
