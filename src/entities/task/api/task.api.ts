@@ -2,9 +2,14 @@ import { api } from '@/shared/api/base'
 import type { ITask, TUpdateTask } from '../model/task.types'
 
 export const taskApi = {
-  getTasks: async (): Promise<ITask> => {
-    const res = await api.get('/tasks')
+  getTasks: async (projectId: string): Promise<ITask[]> => {
+    const res = await api.get(`/tasks?projectId=${projectId}`)
 
+    return res.data
+  },
+
+  createTask: async (task) => {
+    const res = await api.post('/tasks', task)
     return res.data
   },
 

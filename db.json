@@ -6,15 +6,16 @@
       "title": "Agility Core",
       "description": "Разработка основной системы управления задачами",
       "createdAt": "2024-01-10T12:00:00Z"
+    },
+    {
+      "id": "p2",
+      "key": "GGL",
+      "title": "Agility Core",
+      "description": "Разработка основной системы управления задачами",
+      "createdAt": "2024-01-10T12:00:00Z"
     }
   ],
   "columns": [
-    {
-      "id": "col-1",
-      "projectId": "p1",
-      "title": "Backlog",
-      "order": 1
-    },
     {
       "id": "col-2",
       "projectId": "p1",
@@ -22,8 +23,14 @@
       "order": 2
     },
     {
-      "id": "col-3",
+      "id": "col-1",
       "projectId": "p1",
+      "title": "Backlog",
+      "order": 1
+    },
+    {
+      "id": "col-3",
+      "projectId": "p21",
       "title": "Review",
       "order": 3
     },
@@ -49,7 +56,7 @@
     {
       "id": "t-2",
       "projectId": "p1",
-      "columnId": "col-1",
+      "columnId": "col-4",
       "key": "AGL-102",
       "title": "Интеграция JSON Server",
       "description": "Поднять локальный бэкенд и настроить axios инстанс",
@@ -60,7 +67,7 @@
     {
       "id": "t-3",
       "projectId": "p1",
-      "columnId": "col-4",
+      "columnId": "col-1",
       "key": "AGL-103",
       "title": "Верстка сайдбара",
       "description": "Использовать shadcn-vue для создания базовой навигации",

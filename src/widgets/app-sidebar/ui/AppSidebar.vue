@@ -20,7 +20,7 @@ const items = [
   { title: 'Мои задачи', url: '/my-tasks', icon: Inbox },
 ]
 
-const projectItems = ref([{ id: 371972, title: 'Первый проект' }])
+const projectItems = ref([{ id: 'p1', title: 'Первый проект' }])
 </script>
 
 <template>

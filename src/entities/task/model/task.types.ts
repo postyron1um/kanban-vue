@@ -1,4 +1,4 @@
-type TaskPriority = 'low' | 'meduim' | 'high'
+type TaskPriority = 'low' | 'medium' | 'high'
 
 export interface ITask {
   id: string
@@ -8,8 +8,10 @@ export interface ITask {
   title: string
   description?: string
   priority: TaskPriority
-  assigneeId: string
+  // assigneeId: string
   createdAt: string
 }
 
 export type TUpdateTask = Omit<ITask, 'id' | 'projectId' | 'key' | 'createdAt'>
+
+export type TCreateTask = ITask

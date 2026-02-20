@@ -6,12 +6,12 @@
       :column
       :task-count="10"
       :max-task-count="20"
-      @drop-task="(taskId) => moveTask(taskId, column.id)"
+      @drop-task="(taskId) => handleTaskMove(taskId, column.id)"
     >
       <template #tasks>
         <TaskList
           :tasks="tasksByColumn[column.id] || []"
-          @reorder="({ draggedId, targetId }) => moveTask(draggedId, column.id, targetId)"
+          @reorder="({ draggedId, targetId }) => handleTaskMove(draggedId, column.id, targetId)"
         />
       </template>
     </ColumnCard>
@@ -19,23 +19,21 @@
 </template>
 
 <script setup lang="ts">
-import { columnApi } from '@/entities/column/api/column.api'
-import type { IColumn } from '@/entities/column/model/types'
+import { useColumns } from '@/entities/column/model/useColumns'
 import ColumnCard from '@/entities/column/ui/ColumnCard.vue'
 import { taskApi, type ITask } from '@/entities/task'
+import { useTasks } from '@/entities/task/model/useTasks'
 import TaskList from '@/entities/task/ui/TaskList.vue'
+import { useUpdateTask } from '@/features/move-task/model/useUpdateTask'
 import { computed, onMounted, ref } from 'vue'
 
-const columns = ref<IColumn[]>([])
-const tasks = ref<ITask[]>([])
+const props = defineProps<{
+  projectId: string
+}>()
 
-const fetchData = async () => {
-  try {
-    const [colsData, tasksData] = await Promise.all([columnApi.getColumns(), taskApi.getTasks()])
-    columns.value = colsData
-    tasks.value = tasksData
-  } catch {}
-}
+const { data: columns } = useColumns(props.projectId)
+
+const { data: tasks } = useTasks(props.projectId)
 
 const tasksByColumn = computed(() => {
   if (!tasks.value) return {}
@@ -55,31 +53,13 @@ const tasksByColumn = computed(() => {
     {} as Record<string, ITask[]>,
   )
 })
+const { mutate: updateTask } = useUpdateTask(props.projectId)
 
-const moveTask = (taskId: string, columnId: string, targetId?: string) => {
-  const draggedIndex = tasks.value.findIndex((t) => t.id === taskId)
-
-  if (draggedIndex === -1) return
-
-  const task = tasks.value[draggedIndex]
-  if (task) {
-    tasks.value.splice(draggedIndex, 1)
-    task.columnId = columnId
-
-    if (targetId) {
-      const targetIdIndex = tasks.value.findIndex((t) => t.id === targetId)
-
-      tasks.value.splice(targetIdIndex, 0, task)
-      taskApi.updateTask(task.id, task)
-      return
-    }
-  }
-  tasks.value.push(task)
+const handleTaskMove = (taskId: string, newColumnId: string, newOrder?: number) => {
+  updateTask({ taskId, data: { columnId: newColumnId, order: newOrder } })
 }
 
-onMounted(() => {
-  fetchData()
-})
+
 </script>
 
 <style scoped lang="scss">

@@ -2,33 +2,27 @@
   <div class="project">
     <div class="project__header">
       <h1>Название проекта</h1>
+
       <div class="project__actions">
-        <Button>Добавить задачу </Button>
+        <CreateTaskSheet :project="project.data" />
       </div>
     </div>
 
-    <ColumnList />
+    <ColumnList :project-id />
   </div>
 </template>
 
 <script setup lang="ts">
-import { columnApi } from '@/entities/column/api/column.api'
-import type { IColumn } from '@/entities/column/model/types'
-import Button from '@/shared/ui/button/Button.vue'
+import { useProjects } from '@/entities/project'
+import CreateTaskSheet from '@/features/add-task/ui/CreateTaskSheet.vue'
 import ColumnList from '@/widgets/column-list/ui/ColumnList.vue'
 import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 
-const columns = ref<IColumn[]>([])
+const route = useRoute()
+const projectId = route.params.id as string
 
-const fetchColumns = async () => {
-  columns.value = await columnApi.getColumns()
-
-  columns.value
-}
-
-onMounted(() => {
-  fetchColumns()
-})
+const { project } = useProjects(projectId)
 </script>
 
 <style scoped lang="scss">
