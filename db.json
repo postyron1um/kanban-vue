@@ -10,7 +10,7 @@
     {
       "id": "p2",
       "key": "GGL",
-      "title": "Agility Core",
+      "title": "Go ggd Core",
       "description": "Разработка основной системы управления задачами",
       "createdAt": "2024-01-10T12:00:00Z"
     }
@@ -19,6 +19,12 @@
     {
       "id": "col-1",
       "projectId": "p1",
+      "title": "Backlog",
+      "order": 1
+    },
+    {
+      "id": "col-1",
+      "projectId": "p2",
       "title": "Backlog",
       "order": 1
     },
@@ -176,6 +182,16 @@
       "priority": "low",
       "createdAt": 1771580690995,
       "order": 8796.875
+    },
+    {
+      "id": "t-1771663263877",
+      "title": "fjkdf",
+      "description": "dsadsad",
+      "priority": "low",
+      "projectId": "p2",
+      "createdAt": 1771663263877,
+      "key": "GGL-t-1",
+      "columnId": "col-1"
     }
   ],
   "users": [

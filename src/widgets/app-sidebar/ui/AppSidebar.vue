@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useProjectsList } from '@/entities/project/model/useProjectList'
 import {
   Sidebar,
   SidebarContent,
@@ -12,15 +13,35 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/shared/ui/sidebar'
-import { GalleryVerticalEnd, Home, Inbox } from 'lucide-vue-next'
-import { ref } from 'vue'
+import { ChevronDown, ChevronUp, GalleryVerticalEnd, Home, Inbox } from 'lucide-vue-next'
+import { computed, ref } from 'vue'
 
-const items = [
+const { data: projects } = useProjectsList()
+
+const items = computed(() => [
   { title: 'Главная', url: '/', icon: Home },
   { title: 'Мои задачи', url: '/my-tasks', icon: Inbox },
-]
+])
 
-const projectItems = ref([{ id: 'p1', title: 'Первый проект' }])
+const isExpanded = ref(false)
+const VISIBLE_PROJECTS_LIMIT = 1
+
+const projectItems = computed(() => {
+  if (!projects.value) return []
+
+  return projects.value.map((project) => ({
+    title: project.title,
+    id: project.id,
+  }))
+})
+
+const hasExtraProjects = computed(() => projectItems.value.length > VISIBLE_PROJECTS_LIMIT)
+
+const visibleProjects = computed(() => {
+  if (!projects.value) return []
+
+  return isExpanded.value ? projectItems.value : projectItems.value.slice(0, VISIBLE_PROJECTS_LIMIT)
+})
 </script>
 
 <template>
@@ -63,13 +84,31 @@ const projectItems = ref([{ id: 'p1', title: 'Первый проект' }])
       <SidebarGroup>
         <SidebarGroupLabel>Проекты</SidebarGroupLabel>
         <SidebarGroupContent>
-          <SidebarMenu>
-            <SidebarMenuItem v-for="project in projectItems" :key="project.id">
-              <SidebarMenuButton as-child>
-                <RouterLink :to="`/project/${project.id}`">
-                  <div class="size-4 rounded-sm border bg-muted" />
-                  <span>{{ project.title }}</span>
-                </RouterLink>
+          <div
+            :class="[
+              'transition-all duration-300 ease-in-out',
+              isExpanded ? 'max-height-60 overflow-y-auto pr-2' : 'max-height-none',
+            ]"
+            :style="{ maxHeight: isExpanded ? '300px' : 'none' }"
+          >
+            <SidebarMenu>
+              <SidebarMenuItem v-for="project in visibleProjects" :key="project.id">
+                <SidebarMenuButton as-child>
+                  <RouterLink :to="`/project/${project.id}`">
+                    <span>{{ project.title }}</span>
+                  </RouterLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </div>
+          <SidebarMenu v-if="hasExtraProjects">
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                @click="isExpanded = !isExpanded"
+                class="text-sidebar-foreground/60 hover:text-sidebar-foreground"
+              >
+                <component :is="isExpanded ? ChevronUp : ChevronDown" class="size-4 mr-2" />
+                <span>{{ isExpanded ? 'Скрыть' : `Еще ${projectItems.length - VISIBLE_PROJECTS_LIMIT}` }}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>

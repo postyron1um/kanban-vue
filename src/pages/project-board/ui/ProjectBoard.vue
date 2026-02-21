@@ -11,7 +11,7 @@
         </div>
       </div>
     </Teleport>
-    <ColumnList :project-id />
+    <ColumnList v-model="projectId" />
   </div>
 </template>
 
@@ -19,13 +19,24 @@
 import { useProjects } from '@/entities/project'
 import CreateTaskSheet from '@/features/create-task/ui/CreateTaskSheet.vue'
 import ColumnList from '@/widgets/column-list/ui/ColumnList.vue'
+import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const projectId = route.params.id as string
+const projectId = ref(route.params.id as string)
 
 const { project } = useProjects(projectId)
 const { isLoading, isError } = project
+
+watch(
+  () => route.params.id,
+  (newId) => {
+    if (typeof newId === 'string') {
+      console.log(newId)
+      projectId.value = newId
+    }
+  },
+)
 </script>
 
 <style scoped lang="scss">
@@ -34,7 +45,7 @@ const { isLoading, isError } = project
     display: flex;
     justify-content: space-between;
     align-items: center;
-      flex:1;
+    flex: 1;
     // padding: 20px 0;
   }
 }

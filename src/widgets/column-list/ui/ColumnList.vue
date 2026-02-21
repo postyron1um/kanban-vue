@@ -27,13 +27,12 @@ import TaskList from '@/entities/task/ui/TaskList.vue'
 import { useMoveTask } from '@/features/move-task/model/useMoveTask'
 import { computed } from 'vue'
 
-const props = defineProps<{
-  projectId: string
-}>()
 
-const { data: columns } = useColumns(props.projectId)
+const projectId = defineModel<string>()
 
-const { data: tasks } = useTasks(props.projectId)
+const { data: columns } = useColumns(projectId)
+
+const { data: tasks } = useTasks(projectId)
 
 const tasksByColumn = computed(() => {
   if (!tasks.value) return {}
@@ -61,7 +60,7 @@ const tasksByColumn = computed(() => {
 })
 
 
-const { handleTaskMove } = useMoveTask(props.projectId);
+const { handleTaskMove } = useMoveTask(projectId);
 </script>
 
 <style scoped lang="scss">
